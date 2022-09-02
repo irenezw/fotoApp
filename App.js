@@ -1,25 +1,7 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-require('dotenv').config()
-console.log(process.env) // remove this after you've confirmed it working
+import HomeScreen from './components/HomeScreen.jsx';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>fotoApp</Text>
-
-      <StatusBar style="auto" />
-    </View>
+    <HomeScreen/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
