@@ -17,30 +17,7 @@ const Gallery = ({tenDogs}) => {
 
   return (
     <ScrollView>
-      {tenDogs.map((dog, i) => (
-        <ImageBackground
-          // style={styles.image}
-          key={i}
-          style={{width: 280, height: 250, margin: 5}}
-          imageStyle={{ borderRadius: 15}}
-          source = {{uri: dog}}>
-          <Pressable  style={styles.button}>
-            {/* <Text>LIKE</Text> */}
-            <View key={i}>
-            <Icon
-              key={i}
-              raised
-              name='heart'
-              type='font-awesome'
-              color={like ? 'red' : 'gray'}
-              onPress={() => {
-                handleLike()
-              }}
-              />
-            </View>
-          </Pressable>
-        </ImageBackground>
-       ))}
+      {tenDogs.map((dog, i) => (<Image dog={dog} key={i}/>))}
     </ScrollView>
   )
 }
