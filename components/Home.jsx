@@ -2,7 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, RefreshControl} from 'react-native';
 import { React, useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Gallery from './Gallery.jsx'
+import Gallery from './Gallery.jsx';
+import Nav from './Nav.jsx';
 
 
 export default function Home() {
