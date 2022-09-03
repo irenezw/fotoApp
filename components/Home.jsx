@@ -4,8 +4,9 @@ import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Gallery from './Gallery.jsx'
 
-export default function HomeScreen() {
-  const [tenDogs, setTenDogs] = useState({})
+export default function Home() {
+  const [tenDogs, setTenDogs] = useState({});
+  const [loaded, setLoaded] = useState(false);
 
   const getDogsFromApi = () => {
     return fetch('https://dog.ceo/api/breed/retriever/golden/images/random/10')
@@ -18,33 +19,25 @@ export default function HomeScreen() {
       console.error(err);
     });
   }
-
+//TODO understand how useEffect and return statement inside of it
   useEffect(()=> {
     getDogsFromApi()
     .then((res) => {
-      return(res)
+      //make sure data is loaded before continuing
+      setLoaded(true);
     })
     .catch((err) => {console.log('useEffect: ', err)})
   }, [])
 
+
   return (
     <View style={styles.container}>
       <Text>fotoApp</Text>
-      <Gallery  tenDogs={tenDogs}/>
+      {loaded && <Gallery tenDogs={tenDogs}/>}
     <StatusBar style="auto" />
     </View>
   );
 }
-
-// export default Gallery = (props) => {
-//   console.log(props.tenDogs[0])
-//   return (
-//     <View>
-//       {/* <View {props.tenDogs.map(dogImg => {(<Text>{console.log(dogImg)}</Text>)})}></View> */}
-//     </View>
-//   );
-// }
-
 
 const styles = StyleSheet.create({
   container: {
