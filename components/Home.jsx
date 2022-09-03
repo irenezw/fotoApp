@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Gallery from './Gallery.jsx'
 
+
 export default function Home() {
   const [tenDogs, setTenDogs] = useState({});
   const [loaded, setLoaded] = useState(false);
