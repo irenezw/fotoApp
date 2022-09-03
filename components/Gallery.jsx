@@ -1,6 +1,6 @@
-import {React, useState} from 'react';
+import {React, useState, useCallback} from 'react';
 import Image from './Image.jsx';
-import { Text, View, FlatList, ImageBackground, ScrollView, TouchableOpacity, Pressable, StyleSheet} from 'react-native';
+import { Text, View, FlatList, ImageBackground, ScrollView, TouchableOpacity, Pressable, StyleSheet, RefreshControl} from 'react-native';
 import { Icon } from "@rneui/themed";
 
 
@@ -9,14 +9,33 @@ import { Icon } from "@rneui/themed";
 //in order for diffing to occur in arrays. react wants us to use KEY PROPS
 //bc it looks at key to determine if list item has changed
 //
-const Gallery = ({tenDogs}) => {
+const Gallery = ({tenDogs, getDogsFromApi}) => {
   const [like, setLike] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const wait = (timeout) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  }
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    wait(2000)
+    .then(() => setRefreshing(false))
+    .then(()=>(getDogsFromApi()))
+    .catch((err)=> console.log('error refreshing'))
+  }, []);
+
   const handleLike = () => {
     setLike(!like);
   }
 
   return (
-    <ScrollView>
+    <ScrollView
+     refreshControl={
+      <RefreshControl
+        refreshing={refreshing}
+        onRefresh={onRefresh}
+      />}>
       {tenDogs.map((dog, i) => (<Image dog={dog} key={i}/>))}
     </ScrollView>
   )

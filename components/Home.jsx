@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image} from 'react-native';
-import { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, Image, RefreshControl} from 'react-native';
+import { React, useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Gallery from './Gallery.jsx'
 
@@ -9,12 +9,13 @@ export default function Home() {
   const [tenDogs, setTenDogs] = useState({});
   const [loaded, setLoaded] = useState(false);
 
+
   const getDogsFromApi = () => {
     return fetch('https://dog.ceo/api/breed/retriever/golden/images/random/10')
     .then((response) => response.json())
     .then((json)=> {
       setTenDogs(json["message"])
-      console.log(tenDogs)
+      // console.log(tenDogs)
     })
     .catch((err) => {
       console.error(err);
@@ -32,9 +33,9 @@ export default function Home() {
 
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} >
       <Text style={styles.title}>fotoApp</Text>
-      {loaded && <Gallery tenDogs={tenDogs}/>}
+      {loaded && <Gallery tenDogs={tenDogs} getDogsFromApi={getDogsFromApi}/>}
     <StatusBar style="auto" />
     </View>
   );
