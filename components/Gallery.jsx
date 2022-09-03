@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, FlatList, Image, ScrollView, TouchableOpacity} from 'react-native';
+import { Text, View, FlatList, ImageBackground, ScrollView, TouchableOpacity} from 'react-native';
 //TODO diff-ing algorithm that compares previous render with the current code
 //in order for diffing to occur in arrays. react wants us to use KEY PROPS
 //bc it looks at key to determine if list item has changed
@@ -9,16 +9,13 @@ const Gallery = ({tenDogs}) => {
     <ScrollView>
       {/* {console.log(`"${tenDogs[0]}"`)} */}
       {tenDogs.map((dog, i) => (
-      <TouchableOpacity onPress={()=>{console.log('LIKE')}}>
-        <Image
-        key={i}
-        style={{width: 200, height: 200}}
-        // source={{uri:`${dog}`}}
-        // source={{uri:{dog}}}
-        source = {{uri: dog}}
-      />
-      </TouchableOpacity>))}
-
+        <TouchableOpacity onPress={()=>{console.log('LIKE')}}>
+        <ImageBackground
+          key={i}
+          style={{width: 200, height: 200}}
+          source = {{uri: dog}}
+        ></ImageBackground>
+       </TouchableOpacity>))}
     </ScrollView>
     // {tenDogs.map((dog, i) => (<Text key={i}>{i}: {dog}</Text>))}
     // <Image source={{uri: imageUrl}} />
