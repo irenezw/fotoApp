@@ -30,10 +30,7 @@ const Image = ({dog, key}) => {
                 name='heart'
                 type='font-awesome'
                 color={like ? 'red' : 'gray'}
-                onPress={() => {
-                  handleLike()
-                }}
-                />
+                onPress={() => { handleLike() }}/>
               </View>
             </Pressable>
         </ImageBackground>
