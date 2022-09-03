@@ -1,4 +1,5 @@
 import {React, useState} from 'react';
+import Image from './Image.jsx';
 import { Text, View, FlatList, ImageBackground, ScrollView, TouchableOpacity, Pressable, StyleSheet} from 'react-native';
 import { Icon } from "@rneui/themed";
 
@@ -27,6 +28,7 @@ const Gallery = ({tenDogs}) => {
             {/* <Text>LIKE</Text> */}
             <View key={i}>
             <Icon
+              key={i}
               raised
               name='heart'
               type='font-awesome'
