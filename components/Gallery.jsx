@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useState} from 'react';
 import { Text, View, FlatList, ImageBackground, ScrollView, TouchableOpacity, Pressable, StyleSheet} from 'react-native';
 import { Icon } from "@rneui/themed";
 
@@ -9,15 +9,19 @@ import { Icon } from "@rneui/themed";
 //bc it looks at key to determine if list item has changed
 //
 const Gallery = ({tenDogs}) => {
-
+  const [like, setLike] = useState(false);
+  const handleLike = () => {
+    setLike(!like);
+  }
 
   return (
     <ScrollView>
       {tenDogs.map((dog, i) => (
-        <TouchableOpacity>
         <ImageBackground
+          // style={styles.image}
           key={i}
-          style={{width: 200, height: 200}}
+          style={{width: 280, height: 250, margin: 5}}
+          imageStyle={{ borderRadius: 15}}
           source = {{uri: dog}}>
           <Pressable  style={styles.button}>
             {/* <Text>LIKE</Text> */}
@@ -26,32 +30,23 @@ const Gallery = ({tenDogs}) => {
               raised
               name='heart'
               type='font-awesome'
-              color='gray'
-              onPress={() => console.log('LIKED')}
+              color={like ? 'red' : 'gray'}
+              onPress={() => {
+                handleLike()
+              }}
               />
             </View>
           </Pressable>
         </ImageBackground>
-       </TouchableOpacity>))}
+       ))}
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   image: {
     flex: 1,
     justifyContent: "center"
-  },
-  text: {
-    color: "white",
-    fontSize: 42,
-    lineHeight: 84,
-    fontWeight: "bold",
-    textAlign: "center",
-    backgroundColor: "#000000c0"
   },
   button: {
     alignSelf: 'flex-end',

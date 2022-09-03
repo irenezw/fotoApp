@@ -33,7 +33,7 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Text>fotoApp</Text>
+      <Text style={styles.title}>fotoApp</Text>
       {loaded && <Gallery tenDogs={tenDogs}/>}
     <StatusBar style="auto" />
     </View>
@@ -43,8 +43,21 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    padding: 40,
+    backgroundColor: "pink",
     alignItems: 'center',
     justifyContent: 'center',
   },
+  title: {
+    marginTop: 5,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    borderWidth: 4,
+    color: "#20232a",
+    textAlign: "center",
+    fontSize: 30,
+    fontWeight: "bold",
+    margin: 10,
+
+  }
 });
